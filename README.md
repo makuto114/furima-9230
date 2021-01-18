@@ -17,7 +17,6 @@
 
 has_many :items
 has_many :orders
-has_many :purchase_logs
 
 
 ## items テーブル
@@ -31,13 +30,13 @@ has_many :purchase_logs
 | condition_id     | integer| null: false |
 | postage_id       | integer| null: false |
 | shipping_days_id | integer| null: false |
-| shipping_area_id | integer| null: false |
+| shipping_area_id | integer| null: false | 
+| user_id          | integer| null: false |
 
 ### Association
 
 belongs_to :user
 has_one    :order
-has_one    :purchase_log
 
 
 ## orders テーブル
@@ -58,16 +57,17 @@ attr_accessor :token
 
 ## shipping_address テーブル
 
-| Column          | Type       | Options        |
-| --------------- | ---------- | -------------- |
-| postal_code     | integer    | null: false    |
-| prefecture_id   | integer    | null: false    |
-| city            | string     | null: false    |
-| house_number    | integer    | null: false    |
-| building        | string     | null: false    |
-| phone_number    | integer    | null: false    |
+| Column          | Type       | Options                       |
+| --------------- | ---------- | ----------------------------- |
+| postal_code     | integer    | null: false                   |
+| prefecture_id   | integer    | null: false                   |
+| city            | string     | null: false                   |
+| house_number    | integer    | null: false                   |
+| building        | string     | null: false                   |
+| phone_number    | integer    | null: false                   |
+| order_id        | reference  | null: false, foreign_key: true|
 
 
 ### Association
 
-has_one :order
+belongs_to :order
