@@ -30,8 +30,8 @@ has_many :orders
 | condition_id     | integer| null: false                     |
 | postage_id       | integer| null: false                     |
 | shipping_days_id | integer| null: false                     |
-| shipping_area_id | integer| null: false                     | 
-| user_id          | integer| null: false, foreign_key: true  |
+| prefecture_id    | integer| null: false                     | 
+| user             | integer| null: false, foreign_key: true  |
 
 ### Association
 
@@ -62,10 +62,10 @@ attr_accessor :token
 | postal_code     | integer    | null: false                   |
 | prefecture_id   | integer    | null: false                   |
 | city            | string     | null: false                   |
-| house_number    | integer    | null: false                   |
+| house_number    | string     | null: false                   |
 | building        | string     | null: false                   |
-| phone_number    | integer    | null: false                   |
-| order_id        | reference  | null: false, foreign_key: true|
+| phone_number    | string     | null: false                   |
+| order           | reference  | null: false, foreign_key: true|
 
 
 ### Association
