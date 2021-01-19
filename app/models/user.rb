@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # validates :nickname, presence: true
-  # validates :email, presence: true, uniqueness: true, 
-  #           format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :nickname, :family_name, :first_name, :family_name_ruby, :first_name_ruby, :birth_date, presence: true
+  validates :email, presence: true, uniqueness: true, 
+            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
             
-
-  # validates :password, presence: true, length: { minimum: 7 },
-  #           format: { with: }
-
+  validates :password, presence: true, length: { minimum: 6 },
+            format: { with: /\A^(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}$\z/i }
+  
+  has_many :items
+  has_many :orders
 end
