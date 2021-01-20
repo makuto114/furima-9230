@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, :family_name, :first_name, :family_name_ruby, :first_name_ruby, :birth_date, presence: true
+  validates :nickname, :family_name, :first_name, :birth_date, presence: true
+  validates :family_name_ruby, :first_name_ruby, presence: true,
+            format: { with: /\A[\p{katakana}]+\z/ }
+
   validates :email, presence: true, uniqueness: true, 
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
             
