@@ -11,7 +11,10 @@ class Item < ApplicationRecord
   has_one          :order
   has_one_attached :image
   
-  validates :name, :introduction, :price, presence: true
+  validates :name, :introduction, :image, presence: true
+
+  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+
   validates :category_id, :condition_id, :postage_id, :shipping_days_id, :prefecture_id, presence: true, numericality: { other_than: 0 }
   
 end
