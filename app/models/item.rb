@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   
   validates :name, :introduction, :image, presence: true
 
-  validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
 
   validates :category_id, :condition_id, :postage_id, :shipping_days_id, :prefecture_id, presence: true, numericality: { other_than: 0 }
   
