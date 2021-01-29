@@ -55,6 +55,7 @@ has_one    :shipping_address
 attr_accessor :token
 
 
+
 ## shipping_address テーブル
 
 | Column          | Type       | Options                       |
