@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderShippingAddress, type: :model do
   describe "商品購入" do
     before do
-      @order_shipping_address = FactoryBot.build(:order_shipping_address)
-      @order = FactoryBot.build(:order)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: @user.id, item_id: @item.id)
+      sleep 0.05
     end
 
     context "商品が購入できるとき" do
@@ -12,6 +14,13 @@ RSpec.describe OrderShippingAddress, type: :model do
       it "全ての情報が正しく入力されていれば商品購入ができること" do
         expect(@order_shipping_address). to be_valid
       end
+
+      it "建物名が空でも購入できる" do
+        @order_shipping_address.building = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address). to be_valid
+      end
+
     end
 
     context "商品が購入できないとき" do
@@ -67,6 +76,24 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.phone_number = "383-5089"
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages). to include("Phone number is invalid")
+      end
+
+      it "番地が空だと購入できない" do
+        @order_shipping_address.house_number = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages). to include("House number can't be blank")
+      end
+
+      it "user_idが空だと購入できない" do
+        @order_shipping_address.user_id = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages). to include("User can't be blank")
+      end
+
+      it "item_idが空だと購入できない" do
+        @order_shipping_address.item_id = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages). to include("Item can't be blank")
       end
 
     end
