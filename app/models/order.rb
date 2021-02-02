@@ -3,6 +3,4 @@ class Order < ApplicationRecord
   has_one :item
   has_one :shipping_address, dependent: :destroy
   belongs_to :user
-
-  validates :user, :item, presence: true
 end
