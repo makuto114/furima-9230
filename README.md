@@ -55,6 +55,7 @@ has_one    :shipping_address
 attr_accessor :token
 
 
+
 ## shipping_address テーブル
 
 | Column          | Type       | Options                       |
@@ -63,7 +64,7 @@ attr_accessor :token
 | prefecture_id   | integer    | null: false                   |
 | city            | string     | null: false                   |
 | house_number    | string     | null: false                   |
-| building        | string     | null: false                   |
+| building        | string     |                   |
 | phone_number    | string     | null: false                   |
 | order           | reference  | null: false, foreign_key: true|
 
