@@ -8,5 +8,6 @@ class UsersController < ApplicationController
       render root_path
     else
       render action: :new
+    end
   end
 end
