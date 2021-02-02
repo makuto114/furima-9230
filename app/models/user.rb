@@ -15,5 +15,5 @@ class User < ApplicationRecord
             format: { with: /\A^(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}$\z/i }
   
   has_many :items, dependent: :destroy
-  has_many :orders
+  has_many :orders, dependent: :destroy
 end
